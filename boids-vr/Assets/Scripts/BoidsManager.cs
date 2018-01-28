@@ -15,6 +15,10 @@ public class BoidsManager : MonoBehaviour {
 	public Vector3 _instantiationFieldRange;
     private bool _isClicked = false;
 
+    [Header("Colors")]
+    public bool _useRainbow;
+    public Color[] _colors;
+
 	void Awake () {
 
 		instance = this;
@@ -72,14 +76,25 @@ public class BoidsManager : MonoBehaviour {
 
         Vector3 controllerPosition = VRTK.VRTK_SDKManager.instance.scriptAliasRightController.gameObject.transform.position;
 
-
         Vector3 whereToInstantiate = new Vector3 (
             controllerPosition.x + UnityEngine.Random.Range(-1*_instantiationFieldRange.x,_instantiationFieldRange.x),
             controllerPosition.y + UnityEngine.Random.Range(-1*_instantiationFieldRange.y,_instantiationFieldRange.y),
             controllerPosition.z + UnityEngine.Random.Range(-1*_instantiationFieldRange.z,_instantiationFieldRange.z)
 		);
 
-		Instantiate (_agentPrefab, whereToInstantiate, Quaternion.identity);
+		GameObject agent = Instantiate (_agentPrefab, whereToInstantiate, Quaternion.identity);
+        if (_useRainbow)
+        {
+            int index = UnityEngine.Random.Range(0, _colors.Length);
+            agent.GetComponentsInChildren<Renderer>()[1].material.SetColor("_EmissionColor", _colors[index]);
+            agent.GetComponent<TrailRenderer>().material.SetColor("_Color", _colors[index]);
+            SelfDestruct s = agent.GetComponent<SelfDestruct>();
+            if(s != null)
+            {
+                Debug.Log("HAS S");
+                s.SetDestroy(true);
+            }
+        }
 
 	}
 

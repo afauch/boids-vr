@@ -517,6 +517,8 @@ MonoBehaviour:
       PublicKeyToken=null
   _agentPrefab: {fileID: 1862038427}
   _instantiationFieldRange: {x: 0, y: 0, z: 0}
+  _useRainbow: 0
+  _colors: []
 --- !u!4 &1197478987
 Transform:
   m_ObjectHideFlags: 0

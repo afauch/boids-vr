@@ -517,6 +517,11 @@ MonoBehaviour:
       PublicKeyToken=null
   _agentPrefab: {fileID: 1862038427}
   _instantiationFieldRange: {x: 0, y: 0, z: 0}
+  _useRainbow: 1
+  _colors:
+  - {r: 1, g: 0.2352941, b: 0.2352941, a: 1}
+  - {r: 0.27205884, g: 0.6084179, b: 1, a: 1}
+  - {r: 1, g: 0.9310345, b: 0.375, a: 1}
 --- !u!4 &1197478987
 Transform:
   m_ObjectHideFlags: 0
@@ -1002,21 +1007,21 @@ TrailRenderer:
   m_Time: 30
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.002
+    widthMultiplier: 0.004
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 1
-        inSlope: -2.7555556
-        outSlope: -2.7555556
+        inSlope: 0.75000006
+        outSlope: 0.75000006
         tangentMode: 0
       - serializedVersion: 2
         time: 0.9949951
-        value: 0.019996643
-        inSlope: -1.077674
-        outSlope: -1.077674
+        value: 0.039993286
+        inSlope: -2.1927922
+        outSlope: -2.1927922
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
