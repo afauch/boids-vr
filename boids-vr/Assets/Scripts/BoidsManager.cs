@@ -57,10 +57,13 @@ public class BoidsManager : MonoBehaviour {
 
 	void AddAgent() {
 
-		Vector3 whereToInstantiate = new Vector3 (
-			UnityEngine.Random.Range(-1*_instantiationFieldRange.x,_instantiationFieldRange.x),
-            UnityEngine.Random.Range(-1*_instantiationFieldRange.y,_instantiationFieldRange.y),
-            UnityEngine.Random.Range(-1*_instantiationFieldRange.z,_instantiationFieldRange.z)
+        Vector3 controllerPosition = VRTK.VRTK_SDKManager.instance.scriptAliasRightController.gameObject.transform.position;
+
+
+        Vector3 whereToInstantiate = new Vector3 (
+            controllerPosition.x + UnityEngine.Random.Range(-1*_instantiationFieldRange.x,_instantiationFieldRange.x),
+            controllerPosition.y + UnityEngine.Random.Range(-1*_instantiationFieldRange.y,_instantiationFieldRange.y),
+            controllerPosition.z + UnityEngine.Random.Range(-1*_instantiationFieldRange.z,_instantiationFieldRange.z)
 		);
 
 		Instantiate (_agentPrefab, whereToInstantiate, Quaternion.identity);

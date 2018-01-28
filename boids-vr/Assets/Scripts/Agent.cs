@@ -17,6 +17,7 @@ public class Agent : MonoBehaviour {
 	public GameObject _targetObject;
 	public Vector3 _target;
 
+    public bool _useCustomSpeed;
 	public float _updateSpeed = 0.05f;
 
 	// Use this for initialization
@@ -37,12 +38,23 @@ public class Agent : MonoBehaviour {
 		// add to list
 		_prevLocs.Add(_loc);
 
-
-		InvokeRepeating ("BoidUpdate", 0.0f, _updateSpeed);
+        // Only use this if you want to override regular update
+        if (_useCustomSpeed)
+        {
+            InvokeRepeating("BoidUpdate", 0.0f, _updateSpeed);
+        }
 
 	}
 
-	void BoidUpdate () {
+    void Update()
+    {
+        if (!_useCustomSpeed)
+        {
+            BoidUpdate();
+        }
+    }
+
+    void BoidUpdate () {
 
 		_target = _targetObject.transform.position;
 
