@@ -13,6 +13,7 @@ public class BoidsManager : MonoBehaviour {
 	public UnityEvent ResetEvent = null;
 	public GameObject _agentPrefab;
 	public Vector3 _instantiationFieldRange;
+    private bool _isClicked = false;
 
 	void Awake () {
 
@@ -26,12 +27,19 @@ public class BoidsManager : MonoBehaviour {
         // Subscribe to evemt controller events   
 
         VRTK.VRTK_SDKManager.instance.scriptAliasRightController.GetComponent<VRTK_ControllerEvents>().TriggerClicked += OnTriggerClicked;
+        VRTK.VRTK_SDKManager.instance.scriptAliasRightController.GetComponent<VRTK_ControllerEvents>().TriggerUnclicked += OnTriggerUnclicked;
 
+    }
+
+    private void OnTriggerUnclicked(object sender, ControllerInteractionEventArgs e)
+    {
+        _isClicked = false;
     }
 
     private void OnTriggerClicked(object sender, ControllerInteractionEventArgs e)
     {
-        AddAgent();
+        _isClicked = true;
+        // AddAgent();
     }
 
 
@@ -52,6 +60,11 @@ public class BoidsManager : MonoBehaviour {
 			AddAgent ();
 
 		}
+
+        if(_isClicked)
+        {
+            AddAgent();
+        }
 
 	}
 
